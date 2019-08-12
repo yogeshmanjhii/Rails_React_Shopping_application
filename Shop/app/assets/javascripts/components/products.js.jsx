@@ -1,4 +1,3 @@
-// import Dropdown from './Dropdown.js.jsx';
 Products = React.createClass({
   getInitialState: function () {
     return { text: '' }
@@ -14,7 +13,7 @@ Products = React.createClass({
         <div className="col-md-1">
           <h1>{}</h1>
         </div>
-        <div className="col-md-1">
+        <div className="col-md-2">
           <h1>{this.props.name}</h1>
         </div>
         <div className="col-md-2">
