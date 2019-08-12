@@ -1,2 +1,6 @@
-<h1><%= "Follwing are the available Products" %></h1>
-<%= react_component('Products', name: 'Please see the below products') %>
+
+<H1 style="text-align:center;" ><B> Following products are available in store!</B></H1> <br/><br/>
+<% @products.each do |p| %>
+<%= react_component('Products',serialno:p.id,name: p.name,price:p.price) %>
+<%end%>
+
