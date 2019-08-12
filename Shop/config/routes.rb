@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+
+  get "/locations" => "shop#locations"
+  get "/updateprice" => "shop#update_price"
   root 'shop#index'
+
+
   # root 'shop/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
