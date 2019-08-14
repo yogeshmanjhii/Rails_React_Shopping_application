@@ -2,9 +2,9 @@ class Dropdown extends React.Component {
   constructor() {
     super();
     this.state = {
-      teams: [],
+      locations: [],
       displayMenu: false,
-      selectedTeam: "",
+      selectedOption: "",
       validationError: ""
     };
     this.handleSelectChange = this.handleSelectChange.bind(this)
@@ -14,11 +14,10 @@ class Dropdown extends React.Component {
     this.setState({ value: event.target.value });
   }
 
-
   handleSelectChange(e) {
     var product_id = this.props.id.split("_")[1];
     var pincode = e.target.value;
-    this.setState({ selectedTeam: e.target.value, validationError: e.target.value === "" ? "You must select your location" : "" })
+    this.setState({ selectedOption: e.target.value, validationError: e.target.value === "" ? "You must select your location" : "" })
     fetch("http://localhost:3000/updatepricelocation?product_id=" + product_id + "&pincode=" + pincode)
       .then((response) => {
         return response.json();
@@ -40,7 +39,7 @@ class Dropdown extends React.Component {
         console.log("inside did mount")
         console.log(data)
         let teamsFromApi = data.data.map(team => { return { value: team, display: team } })
-        this.setState({ teams: [{ value: '', display: '(Please Select location)' }].concat(teamsFromApi) });
+        this.setState({ locations: [{ value: '', display: '(Please Select location)' }].concat(teamsFromApi) });
       }).catch(error => {
         console.log(error);
       });
@@ -49,9 +48,9 @@ class Dropdown extends React.Component {
   render() {
     return (
       <div className="dropdown" style={{ background: "silver", width: "150px", marginTop: "25px" }} >
-        <select value={this.state.selectedTeam}
+        <select value={this.state.selectedOption}
           onChange={this.handleSelectChange}>
-          {this.state.teams.map((team) => <option key={team.value} value={team.value}>{team.display}</option>)}
+          {this.state.locations.map((team) => <option key={team.value} value={team.value}>{team.display}</option>)}
         </select>
         <div style={{ color: 'red', marginTop: '5px' }}>
           {this.state.validationError}
