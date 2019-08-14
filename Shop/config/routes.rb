@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   get "/locations" => "shop#locations"
-  get "/updateprice" => "shop#update_price"
+  get "/updatepricelocation" => "shop#update_price_location"
+  get "/updatepriceinput" => "shop#update_price_input"
   root 'shop#index'
 
 
